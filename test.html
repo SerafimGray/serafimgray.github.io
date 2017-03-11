@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>The XMLHttpRequest Object</h1>
+
+<p>Result: <span id="txtHint"></span></p>
+
+<script>
+  getLocation();
+
+  function getLocation() {
+    var xhttp;
+    xhttp = new XMLHttpRequest();
+    xhttp.onload = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        var response = /*JSON.parse(*/this.responseText/*)*/;
+        if (response && response.city) {
+          document.getElementById("txtHint").innerHTML = response;
+        }
+      }
+    };
+    xhttp.open("GET", "//freegeoip.net/json/?callback=?", true);
+    xhttp.send();
+  }
+</script>
+
+</body>
+</html>
