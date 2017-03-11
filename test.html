@@ -15,12 +15,12 @@
     xhttp.onload = function() {
       if (this.readyState == 4 && this.status == 200) {
         var response = /*JSON.parse(*/this.responseText/*)*/;
-        if (response && response.city) {
+        if (response) {
           document.getElementById("txtHint").innerHTML = response;
         }
       }
     };
-    xhttp.open("GET", "//gd.geobytes.com/GetCityDetails?callback=?", true);
+    xhttp.open("GET", "//freegeoip.net/json/?callback=?", true);
     xhttp.send();
   }
 </script>
