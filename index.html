@@ -8,6 +8,453 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
+    <style>
+        html {
+          color: #222;
+          font-size: 1em;
+          line-height: 1.4;
+        }
+
+        .screen {
+          overflow: hidden;
+        }
+
+        .cv-part:not(#statement-article) {
+          background-color: rgba(55, 55, 55, 0.6);
+          height: calc(92.5vh - 2em - 30px);
+          margin: 10px;
+          margin-top: calc(7.5vh + 2em);
+          padding: 10px;
+          position: relative;
+        }
+
+        .screen {
+          height: 100vh;
+          width: 100%;
+        }
+
+        @import url('https://fonts.googleapis.com/css?family=Alegreya|Alegreya+Sans+SC:100|Heebo:100,700|Share+Tech+Mono');
+
+        p,
+        ul {
+          margin: 0;
+        }
+
+        .git-commands {
+          color: white;
+          font-family: 'Share Tech Mono', monospace;
+          font-size: calc((50vw + 1409px) * 3/523);
+        }
+
+        #my-name {
+          color: #FBB03B;
+          font-family: 'Alegreya Sans SC', sans-serif;
+          font-size: calc((50vw + 1409px) * 15/523);
+          font-style: normal;
+          font-weight: 100;
+          height: calc(10em/9);
+          line-height: calc(10em/9);
+          margin: 0;
+        }
+
+        .my-link {
+          color: #FAFAD2;
+          font-family: 'Heebo', sans-serif;
+          font-size: calc((50vw + 1409px) * 5/523);
+          font-style: normal;
+          font-weight: 100;
+          height: calc(10em/5);
+          line-height: calc(10em/5);
+          text-decoration: none;
+        }
+
+        .part-header {
+          color: #FAFAD2;
+          font-family: 'Heebo', sans-serif;
+          font-size: calc((50vw + 1409px) * 6/523);
+          font-style: normal;
+          line-height: calc(10em/6);
+          margin: 0;
+          text-decoration: underline;
+          text-transform: uppercase;
+        }
+
+        .part-body {
+          color: #FAFAD2;
+          font-family: 'Alegreya', serif;
+          font-size: calc((50vw + 1409px) * 6/523);
+          font-style: normal;
+          line-height: calc(10em/6);
+          margin: 0;
+          overflow: hidden;
+        }
+
+        .part-body:not(#statement-body) {
+          position: absolute;
+          top: calc(10em/6 + 10px);
+        }
+
+        .text-block {
+          text-shadow: black 0 0 6px;
+        }
+
+        #welcome-screen {
+          position: fixed;
+          top: 0;
+          z-index: 1;
+        }
+
+        .background-video-container {
+          background-color: #135c6d;
+          bottom: 0;
+          left: 0;
+          overflow: hidden;
+          position: absolute;
+          right: 0;
+          top: 0;
+          z-index: -1;
+        }
+
+        .text-block {
+          padding-left: calc(50vw - 8em);
+        }
+
+        #me {
+          height: 65vh;
+          padding-top: 35vh;
+        }
+
+        #my-address {
+          display: table;
+        }
+
+        .my-link {
+          display: table-row;
+          text-align: center;
+        }
+
+        #my-name {
+          animation: appear 2.5s ease-in-out;
+        }
+
+        @keyframes appear {
+          from {
+            opacity: 0;
+          }
+
+          to {
+            opacity: 1;
+          }
+        }
+
+        #statement-article {
+          margin-top: calc(30vh - 6.25em);
+        }
+
+        #education-screen {
+          position: fixed;
+          top: 0;
+          z-index: 3;
+        }
+
+        #education-text-block {
+          background-attachment: fixed;
+          background-color: #93808a;
+          background-image: url(../img/education.jpg);
+          background-size: cover;
+          border: 1px solid transparent;
+          box-sizing: border-box;
+          height: 100vh;
+          overflow: hidden;
+          width: 100%;
+        }
+
+        #hobby-screen {
+          background-color: white;
+          position: fixed;
+          top: 0;
+          transform: rotateZ(90deg);
+          transform-origin: right bottom;
+          z-index: 3;
+        }
+
+        #hobby-text-block {
+          background-attachment: fixed;
+          background-color: #93808a;
+          background-image: url(../img/hobby.jpg);
+          background-size: cover;
+          border: 1px solid transparent;
+          box-sizing: border-box;
+          height: 100vh;
+          overflow: hidden;
+          transform: rotateZ(-90deg);
+          transform-origin: right bottom;
+          width: 100%;
+        }
+
+        .my-link,
+        #statement-article,
+        #my-address,
+        #branch,
+        #education-screen,
+        #education-text-block,
+        #education-article,
+        #higher-education,
+        #also-education {
+          will-change: transform;
+        }
+
+        #screen-first {
+          height: 200vh;
+        }
+
+        .trigger {
+          position: absolute;
+        }
+
+        #trigger-contacts {
+          top: 30vh;
+        }
+
+        .email {
+          transform: translateX(-100vw);
+        }
+
+        .linkedin {
+          transform: translateX(100vw);
+        }
+
+
+
+        #trigger-statement {
+          top: 60vh;
+        }
+
+        #my-address {
+          transform-origin: top left;
+        }
+
+        #statement-article {
+          transform: translateY(100vh);
+        }
+
+        #git3 {
+          opacity: 0;
+        }
+
+        #education-screen {
+          transform: translateX(100vw);
+        }
+
+        #education-text-block {
+          transform: translateX(-100vw);
+        }
+
+        #higher-education {
+          height: 100%;
+        }
+
+        #also-education {
+          height: 0;
+        }
+
+        #git5 {
+          opacity: 0;
+        }
+
+        #branch {
+          padding-left: 3vw;
+          padding-top: 7.5vh;
+          position: fixed;
+          top: 0;
+          will-change: transition;
+          z-index: 10;
+        }
+
+        .branch-vertex {
+          border: 1px solid #FBB03B;
+          border-radius: 20px;
+          height: 3vw;
+          position: relative;
+          width: 3vw;
+        }
+
+        .git-commands {
+          left: 4.5vw;
+          position: absolute;
+          width: 30em;
+          will-change: contents;
+        }
+
+        .branch-arc {
+          background-color: #FBB03B;
+          height: calc(100vh - 3vw);
+          margin-left: 1.5vw;
+          width: 1px;
+        }
+
+        #arc2,
+        #arc4 {
+          height: calc(80vh - 3vw);
+        }
+
+        @media (max-height:432px) {
+          .part-header {
+            font-size: calc((50vh + 1409px) * 5/523);
+          }
+
+          .part-body {
+            font-size: calc((50vh + 1409px) * 5/523);
+          }
+        }
+
+        @media (max-width:768px) {
+          .background-video-container {
+            background: url('../video/video_preview_large.jpg') center center/cover no-repeat;
+          }
+
+        @media (orientation:landscape) {
+            .background-video-container {
+              background: url('../video/video_preview_medium.jpg') center center/cover no-repeat;
+            }
+        }
+        }
+
+        @media (orientation:landscape) {
+        @media (max-width:568px) {
+            #education-text-block {
+              background-image: url(../img/education-min.jpg);
+            }
+        }
+
+        @media (max-width:768px) {
+            #hobby-text-block {
+              background-image: url(../img/hobby-small.jpg);
+            }
+        }
+
+        @media (min-width:569px) and (max-width:768px) {
+            #education-text-block {
+              background-image: url(../img/education-small.jpg);
+            }
+        }
+
+        @media (min-width:769px) and (max-width:1024px) {
+            #education-text-block {
+              background-image: url(../img/education-medium.jpg);
+            }
+
+            #hobby-text-block {
+              background-image: url(../img/hobby-medium.jpg);
+            }
+        }
+
+        @media (min-width:1025px) and (max-width:1366px) {
+            #education-text-block {
+              background-image: url(../img/education.jpg);
+            }
+
+            #hobby-text-block {
+              background-image: url(../img/hobby.jpg);
+            }
+        }
+
+        @media (min-width:1367px) {
+            #education-text-block {
+              background-image: url(../img/education-large.jpg);
+            }
+
+            #hobby-text-block {
+              background-image: url(../img/hobby-large.jpg);
+            }
+        }
+        }
+
+        @media (orientation:portrait) {
+        @media (max-height:427px) {
+            #education-text-block {
+              background-image: url(../img/education-min.jpg);
+            }
+        }
+
+        @media (min-height:428px) and (max-height:577px) {
+            #education-text-block {
+              background-image: url(../img/education-small.jpg);
+            }
+        }
+
+        @media (min-height:578px) and (max-height:769px) {
+            #education-text-block {
+              background-image: url(../img/education-medium.jpg);
+            }
+        }
+
+        @media (min-height:770px) and (max-height:1026px) {
+            #education-text-block {
+              background-image: url(../img/education.jpg);
+            }
+        }
+
+        @media (min-height:1027px) {
+            #education-text-block {
+              background-image: url(../img/education-large.jpg);
+            }
+        }
+
+        @media (max-height:432px) {
+            #hobby-text-block {
+              background-image: url(../img/hobby-small.jpg);
+            }
+        }
+
+        @media (min-height:433px) and (max-height:576px) {
+            #hobby-text-block {
+              background-image: url(../img/hobby-medium.jpg);
+            }
+        }
+
+        @media (min-height:577px) and (max-height:768px) {
+            #hobby-text-block {
+              background-image: url(../img/hobby.jpg);
+            }
+        }
+
+        @media (min-height:769px) {
+            #hobby-text-block {
+              background-image: url(../img/hobby-large.jpg);
+            }
+        }
+        }
+
+        html {
+          font-family: sans-serif;
+          -ms-text-size-adjust: 100%;
+          -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+          margin: 0;
+        }
+
+        article,
+        aside,
+        section {
+          display: block;
+        }
+
+        a {
+          background-color: transparent;
+        }
+
+        h1 {
+          font-size: 2em;
+          margin: .67em 0;
+        }
+
+        small {
+          font-size: 80%;
+        }
+    </style>
     <link href="https://fonts.googleapis.com/css?family=Alegreya|Alegreya+Sans+SC:100|Heebo:100,700|Share+Tech+Mono" rel="stylesheet">
     <link rel="stylesheet" href="css/normalize.min.css">
     <link rel="stylesheet" href="css/main.css">
