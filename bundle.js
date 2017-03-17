@@ -76,15 +76,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var app_service_1 = __webpack_require__(6);
 var git_1 = __webpack_require__(8);
 var git_list_1 = __webpack_require__(7);
+app_service_1.setVideoHTML();
 exports.git = [];
 var gitElems = document.getElementsByClassName("git-commands");
-app_service_1.setVideoHTML();
 for (var i = 0; i < gitElems.length; i++) {
     exports.git.push(new git_1.Git(gitElems[i]));
     exports.git[i].setCommands(git_list_1.gitList[i]);
 }
 exports.git[0].output();
 app_service_1.createScenes();
+app_service_1.preventBouncing();
 
 
 /***/ }),
@@ -11304,12 +11305,13 @@ var props = [
     ["#trigger-education", 1200, "setTween", "#education-screen", { transform: "translateX(0)" }, false],
     ["#trigger-education", 1200, "setTween", "#education-text-block", { transform: "translateX(0)" }, false],
     ["#trigger-education", 0, "setClassToggle", "#branch", "stage3", 3],
-    ["#trigger-high-edu", 600, "setTween", "#higher-education",
-        { height: 0 }, false],
-    ["#trigger-also-edu", 600, "setTween", "#also-education",
-        { height: "100%" }, false],
+    ["#trigger-high-edu", 600, "setTween", "#higher-education", { height: 0 }, false],
+    ["#trigger-also-edu", 600, "setTween", "#also-education", { height: "100%" }, false],
     ["#trigger-also-edu", 0, "setClassToggle", "#branch", "stage4", 4],
     ["#trigger-also-edu", 200, "setTween", "#git5", { opacity: 1 }, false],
+    ["#trigger-hobby", 1200, "setTween", "#hobby-screen", { transform: "rotateZ(0)" }, false],
+    ["#trigger-hobby", 1200, "setTween", "#hobby-text-block", { transform: "rotateZ(0)" }, false],
+    ["#trigger-hobby", 0, "setClassToggle", "#branch", "stage5", 5],
 ];
 function createScenes() {
     var _loop_1 = function (prop) {
@@ -11338,6 +11340,19 @@ function createScenes() {
     }
 }
 exports.createScenes = createScenes;
+function preventBouncing() {
+    if (navigator.userAgent.match(/(Trident\/7\.|Edge)/)) {
+        document.addEventListener("wheel", function (event) {
+            // remove default behavior
+            event.preventDefault();
+            // scroll without smoothing
+            var wheelDelta = -event.deltaY;
+            var currentScrollPosition = window.pageYOffset;
+            window.scrollTo(0, currentScrollPosition - wheelDelta);
+        });
+    }
+}
+exports.preventBouncing = preventBouncing;
 
 
 /***/ }),
@@ -11374,6 +11389,11 @@ exports.gitList = [
         'git checkout -b "additional"',
         'git add "Also"',
         'git commit -m "Additional education"',
+    ],
+    [
+        'git checkout "master"',
+        'git add "Hobbies"',
+        'git commit -m "Personal Interests"',
     ],
 ];
 
